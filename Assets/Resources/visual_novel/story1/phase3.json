@@ -1,0 +1,10 @@
+[
+  {
+    "command": "interrogation_sequence",
+    "sequence": "story1/phase2"
+  },
+  {
+    "command": "load_sequence",
+    "sequence": "story1/phase4"
+  }
+]

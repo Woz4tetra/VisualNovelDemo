@@ -1,4 +1,13 @@
 {
+    "editor.detectIndentation": true,
+    "editor.insertSpaces": true,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "editor.suggestSelection": "first",
+    "workbench.tree.indent": 15,
+    "editor.formatOnSave": true,
+    "git.openRepositoryInParentFolders": "always",
+    "editor.rulers": [120],
     "files.exclude": {
         "**/.DS_Store": true,
         "**/.git": true,
@@ -56,5 +65,10 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "VisualNovelDemo.sln"
+    "dotnet.defaultSolution": "VisualNovelDemo.sln",
+    "files.watcherExclude": {
+        "**/.git/*/**": true,
+        "**/node_modules/*/**": true,
+        "**/simulation/*/**": true
+    }
 }
