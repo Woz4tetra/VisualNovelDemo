@@ -16,7 +16,7 @@ from game.utils.now import now
 
 
 class TextTypeWriterRenderer(TextRendererInterface):
-    """Wraps around a Graph, throttling character output."""
+    """Wraps around a TextAppearRenderer, throttling character output."""
 
     def __init__(self, renderer: TextAppearRenderer) -> None:
         self.renderer = renderer
@@ -39,13 +39,13 @@ class TextTypeWriterRenderer(TextRendererInterface):
     def draw(self, dst: pygame.Surface, x: int, y: int) -> bool:
         """Draw the text."""
         current_time = now()
-        is_drawing = self.renderer.draw(dst, x, y)
+        done_drawing = self.renderer.draw(dst, x, y)
         if self._is_waiting(current_time):
-            return True
+            return False  # Still waiting
         self._next_operation(current_time)
-        if not is_drawing:
+        if done_drawing:
             return len(self.instruction_queue) == 0  # Done drawing when queue is empty
-        return True  # Still drawing
+        return False  # Still drawing
 
     def newline(self) -> None:
         """Queue up a newline."""

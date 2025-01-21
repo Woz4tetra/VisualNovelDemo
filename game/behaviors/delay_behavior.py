@@ -1,13 +1,9 @@
 import logging
-import time
 
 from game.command.commands import DelayCommand
 from game.container import Container
 from game.events import event
-
-
-def now() -> float:
-    return time.monotonic()
+from game.utils.now import now
 
 
 class DelayBehavior:

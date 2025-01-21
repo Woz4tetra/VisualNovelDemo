@@ -1,14 +1,10 @@
 import logging
-import time
 
 import pygame
 
 from game.canvas.animate.animator import AnimationResult, Animator
 from game.canvas.user_input.user_event import UserEvent
-
-
-def now() -> float:
-    return time.monotonic()
+from game.utils.now import now
 
 
 class FadeAnimator(Animator):

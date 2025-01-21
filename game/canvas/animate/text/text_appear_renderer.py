@@ -67,7 +67,7 @@ class TextAppearRenderer(TextRendererInterface):
                 case TextInstructionType.CUSTOM:
                     cast(Callable, op.parameters[0])()
 
-        return False  # Done drawing
+        return True  # Done drawing
 
     def newline(self) -> None:
         """Add a newline to the passage."""

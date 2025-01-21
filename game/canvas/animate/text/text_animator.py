@@ -59,14 +59,15 @@ class TextAnimator(Animator):
         screen = pygame.Surface(self.screen_size, pygame.SRCALPHA)
         screen.fill((0, 0, 0, 0))
         next_pressed = UserEvent.NEXT_DIALOG in events
+        all_renderers_done = all(self.is_renderer_done)
         finished = False
+        if all_renderers_done and next_pressed:
+            finished = True
         for index, renderer in enumerate(self.renderer):
             status = renderer.draw(screen, 0, 0)
             if next_pressed:
                 renderer.skip()
             self.is_renderer_done[index] = status
-        if all(self.is_renderer_done) and next_pressed:
-            finished = True
         return AnimationResult(finished=finished, surface=screen)
 
     def deinitialize(self) -> None:
