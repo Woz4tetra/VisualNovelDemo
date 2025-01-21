@@ -1,0 +1,10 @@
+[
+    {
+        "type": "set_backdrop",
+        "backdrop": "images/island/06"
+    },
+    {
+        "type": "delay",
+        "duration": 2.0
+    }
+]

@@ -1,23 +1,22 @@
 import logging
 
-from game.behaviors.behavior import Behavior
-from game.command.set_backdrop_command import SetBackdropCommand
+from game.command.commands import SetBackdropCommand
 from game.container import Container
 from game.events import event
 
 
-class SetBackdropBehavior(Behavior):
+class SetBackdropBehavior:
     command: SetBackdropCommand
 
     def __init__(self, command: SetBackdropCommand, container: Container) -> None:
-        super().__init__(command, container)
+        self.backdrop = command.backdrop
         self.canvas = container.canvas
         self.image_cache = container.images
-        self.background = self.image_cache.get(command.backdrop)
+        self.background = self.image_cache.get(self.backdrop)
         self.logger = logging.getLogger(self.__class__.__name__)
 
     def initialize(self) -> None:
-        self.logger.debug(f"Setting backdrop to {self.command.backdrop}")
+        self.logger.debug(f"Setting backdrop to {self.backdrop}")
         self.canvas.set_background(self.background)
 
     def tick(self) -> event.Event:

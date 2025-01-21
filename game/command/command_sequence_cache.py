@@ -1,4 +1,4 @@
-from game.command import CommandType
+from game.command.commands import CommandType
 
 
 class CommandSequenceCache:

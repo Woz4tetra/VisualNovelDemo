@@ -1,8 +1,7 @@
 import logging
 import time
 
-from game.behaviors.behavior import Behavior
-from game.command.delay_command import DelayCommand
+from game.command.commands import DelayCommand
 from game.container import Container
 from game.events import event
 
@@ -11,11 +10,10 @@ def now() -> float:
     return time.monotonic()
 
 
-class DelayBehavior(Behavior):
+class DelayBehavior:
     command: DelayCommand
 
     def __init__(self, command: DelayCommand, container: Container) -> None:
-        super().__init__(command, container)
         self.start_time = 0.0
         self.duration = command.duration
         self.logger = logging.getLogger(self.__class__.__name__)

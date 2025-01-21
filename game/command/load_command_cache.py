@@ -2,8 +2,8 @@ import logging
 from pathlib import Path
 
 from game.assets.paths import STORIES
-from game.command import Commands
 from game.command.command_sequence_cache import CommandSequenceCache
+from game.command.commands import Commands
 from game.command.load_command_sequence import load_command_sequence
 
 

@@ -8,6 +8,10 @@
         "duration": 1.0
     },
     {
+        "type": "transition_to_sequence",
+        "sequence": "scene1"
+    },
+    {
         "type": "set_backdrop",
         "backdrop": "images/island/02"
     },

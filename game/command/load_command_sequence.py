@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from typing import Any, TypeVar
 
-from game.command import Command
+from game.command.commands import Command
 
 T = TypeVar("T", bound=Command)
 

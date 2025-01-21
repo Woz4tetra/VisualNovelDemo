@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Literal
 
-from game.command import Command
+from game.command.commands import Command
 
 
 @dataclass

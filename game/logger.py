@@ -7,7 +7,7 @@ class GameLogFormatter(logging.Formatter):
     def format(self, record: logging.LogRecord) -> str:  # type: ignore[override]
         date = datetime.datetime.fromtimestamp(record.created)
         formatted_time = date.strftime("%Y-%m-%dT%H:%M:%S,%f")
-        return f"[{record.levelname:<5}] {formatted_time} <{record.name}>\t: {record.getMessage()}"
+        return f"[{record.levelname:<5}] {formatted_time} <{record.name}> : {record.getMessage()}"
 
 
 class GameLogger(logging.Logger):
