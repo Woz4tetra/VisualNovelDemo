@@ -1,0 +1,10 @@
+[
+  {
+    "type": "interrogation_sequence",
+    "sequence": "story1/phase2"
+  },
+  {
+    "type": "load_sequence",
+    "sequence": "story1/phase4"
+  }
+]

@@ -1,0 +1,9 @@
+from typing import Protocol
+
+
+class Tickable(Protocol):
+    def initialize(self) -> None: ...
+
+    def tick(self) -> bool: ...
+
+    def deinitialize(self) -> None: ...

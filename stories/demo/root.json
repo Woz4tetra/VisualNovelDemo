@@ -1,0 +1,71 @@
+[
+  {
+    "type": "set_backdrop",
+    "backdrop": "black_screen"
+  },
+  {
+    "type": "delay",
+    "duration": 1.0
+  },
+  {
+    "type": "composite",
+    "subcommands": [
+      {
+        "type": "play_sound",
+        "sound": "bang",
+        "volume": 1.0
+      },
+      {
+        "type": "text",
+        "style": "no_portrait_borderless_center_hv",
+        "bubbles": [
+          {
+            "segments": [
+              {
+                "text": "BANG!!!",
+                "color": "#FF0000",
+                "styles": [
+                  "bold",
+                  "wiggly"
+                ]
+              }
+            ],
+            "load_animation": "appear",
+            "unload_animation": "fade_out,0.5"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "set_backdrop",
+    "backdrop": "opening_scene",
+    "load_animation": "fade_in,3.0"
+  },
+  {
+    "type": "text",
+    "style": "single_right_avatar_impact_bubbles",
+    "bubbles": [
+      {
+        "segments": [
+          {
+            "text": "What "
+          },
+          {
+            "text": "happened?!",
+            "styles": [
+              "italics",
+              "wiggly"
+            ]
+          }
+        ]
+      }
+    ],
+    "avatar": "jin",
+    "subvariant": "surprised"
+  },
+  {
+    "type": "load_sequence",
+    "sequence": "story_select"
+  }
+]

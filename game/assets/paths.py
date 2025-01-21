@@ -1,3 +1,5 @@
 from pathlib import Path
 
-ASSETS = Path(__file__).parent.parent / "assets"
+PROJECT_ROOT = Path(__file__).parent.parent.parent
+ASSETS = PROJECT_ROOT / "assets"
+STORIES = PROJECT_ROOT / "stories"

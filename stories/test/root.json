@@ -1,0 +1,82 @@
+[
+    {
+        "type": "set_backdrop",
+        "backdrop": "images/island/01"
+    },
+    {
+        "type": "delay",
+        "duration": 1.0
+    },
+    {
+        "type": "set_backdrop",
+        "backdrop": "images/island/02"
+    },
+    {
+        "type": "delay",
+        "duration": 1.0
+    },
+    {
+        "type": "set_backdrop",
+        "backdrop": "images/island/03"
+    },
+    {
+        "type": "delay",
+        "duration": 1.0
+    },
+    {
+        "type": "set_backdrop",
+        "backdrop": "images/island/04"
+    },
+    {
+        "type": "delay",
+        "duration": 1.0
+    },
+    {
+        "type": "set_backdrop",
+        "backdrop": "images/island/05"
+    },
+    {
+        "type": "delay",
+        "duration": 1.0
+    },
+    {
+        "type": "set_backdrop",
+        "backdrop": "images/island/06"
+    },
+    {
+        "type": "delay",
+        "duration": 1.0
+    },
+    {
+        "type": "set_backdrop",
+        "backdrop": "images/island/07"
+    },
+    {
+        "type": "delay",
+        "duration": 1.0
+    },
+    {
+        "type": "set_backdrop",
+        "backdrop": "images/island/08"
+    },
+    {
+        "type": "delay",
+        "duration": 1.0
+    },
+    {
+        "type": "set_backdrop",
+        "backdrop": "images/island/09"
+    },
+    {
+        "type": "delay",
+        "duration": 1.0
+    },
+    {
+        "type": "set_backdrop",
+        "backdrop": "images/island/10"
+    },
+    {
+        "type": "delay",
+        "duration": 1.0
+    }
+]
