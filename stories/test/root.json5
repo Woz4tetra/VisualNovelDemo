@@ -12,6 +12,37 @@
         sequence: "scene1",
     },
     {
+        type: "composite",
+        subcommands: [
+            {
+                type: "play_sound",
+                sound: "bang",
+            },
+            {
+                type: "text",
+                style: "no_portrait_borderless_center_hv",
+                bubbles: [
+                    {
+                        segments: [
+                            {
+                                text: "BANG!!!",
+                                color: "#FF0000",
+                                styles: ["bold", "wiggly"],
+                            },
+                        ],
+                        load_animation: {
+                            type: "typing",
+                        },
+                        unload_animation: {
+                            type: "fade_out",
+                            duration: 0.5,
+                        },
+                    },
+                ],
+            },
+        ],
+    },
+    {
         type: "set_backdrop",
         backdrop: "images/island/02",
         load_animation: {

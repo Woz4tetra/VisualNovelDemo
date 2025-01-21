@@ -28,7 +28,7 @@ class FadeAnimator(Animator):
     def initialize(self) -> None:
         self.start_time = now()
 
-    def tick(self) -> AnimationResult:
+    def tick(self, events: tuple[pygame.event.Event, ...]) -> AnimationResult:
         is_running = (elapsed := now() - self.start_time) < self.duration
         if not is_running:
             self.logger.debug("Fade complete")

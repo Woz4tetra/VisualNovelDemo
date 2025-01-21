@@ -1,13 +1,14 @@
 import logging
 from dataclasses import dataclass
-from typing import Callable
 
 import pygame
 
 from game.canvas.animate.animation_definition import AnimationDefinition
 from game.canvas.animate.animator import Animator
-from game.canvas.animate.animator_keys import AnimatorKey
-from game.canvas.animate.fade_animator import FadeAnimator
+from game.canvas.animate.make_fade_animator import make_fade_animator
+from game.canvas.animate.text_animator import make_text_animator
+from game.command.commands.set_backdrop_command import SetBackdropCommand
+from game.command.commands.text_command import TextCommand
 
 
 @dataclass
@@ -37,13 +38,7 @@ class Canvas:
         )
 
         self.active_animators: list[ActiveAnimation] = []
-        self.animators_builders: dict[
-            AnimatorKey, Callable[[AnimationDefinition], Animator]
-        ] = {
-            AnimatorKey.FADE_IN: self.make_fade,
-            AnimatorKey.FADE_OUT: self.make_fade,
-        }
-        self.animators: dict[AnimationDefinition, Animator] = {}
+        self.animators: dict[int, Animator] = {}
         self.backdrop: pygame.Surface | None = None
 
         # decorate the game window
@@ -61,14 +56,17 @@ class Canvas:
     def tick(self) -> bool:
         pygame.display.flip()
         running = True
+        user_events = []
         for event in pygame.event.get():
             if event.type == pygame.QUIT or not self.handle_event(event):
                 running = False
                 break
+            user_events.append(event)
+        user_events_frozen = tuple(user_events)
         if len(self.active_animators) != 0:
             self.draw_background()
         for active_anim in self.active_animators:
-            result = active_anim.animator.tick()
+            result = active_anim.animator.tick(user_events_frozen)
             if result.surface:
                 self.screen.blit(result.surface, result.destination)
             if result.finished:
@@ -90,33 +88,23 @@ class Canvas:
             self.screen.fill((0, 0, 0))
 
     def play_animation(self, animation_definition: AnimationDefinition) -> None:
-        animation_type = animation_definition.type
-        if animation_type not in self.animators:
-            animator = self.animators_builders[animation_type](animation_definition)
-            self.animators[animation_definition] = animator
-        else:
-            animator = self.animators[animation_definition]
+        definition_id = id(animation_definition)
+        if definition_id not in self.animators:
+            self.animators[definition_id] = self.make_animator(animation_definition)
+        animator = self.animators[definition_id]
         animator.initialize()
         self.active_animators.append(ActiveAnimation(animator, animation_definition))
 
+    def make_animator(self, animation_definition: AnimationDefinition) -> Animator:
+        return {
+            SetBackdropCommand: make_fade_animator,
+            TextCommand: make_text_animator,
+        }[type(animation_definition.properties)](
+            animation_definition.properties, animation_definition.data, self.screen_size
+        )
+
     def get_active_animations(self) -> list[AnimationDefinition]:
         return [active.definition for active in self.active_animators]
-
-    def make_fade(self, animation: AnimationDefinition) -> FadeAnimator:
-        if animation.type == AnimatorKey.FADE_IN:
-            is_fade_in = True
-        elif animation.type == AnimatorKey.FADE_OUT:
-            is_fade_in = False
-        else:
-            raise ValueError(f"Invalid fade type: {animation.type}")
-        if not (duration := animation.get("duration", float)):
-            raise ValueError("Missing duration")
-        if not (new_backdrop := animation.get("surface", pygame.Surface)):
-            raise ValueError("Missing next backdrop")
-        return FadeAnimator(self.screen_size, duration, is_fade_in, new_backdrop)
-
-    def hex_to_rgb(self, hex_color: str) -> tuple[int, int, int]:
-        return tuple(int(hex_color[i : i + 2], 16) for i in (0, 2, 4))  # type: ignore
 
     def handle_event(self, event: pygame.event.Event) -> bool:
         if event.type == pygame.QUIT:

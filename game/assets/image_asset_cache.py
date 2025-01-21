@@ -18,6 +18,20 @@ def load_image(path: str) -> pygame.Surface:
     return surface
 
 
+def make_solid_color_image(color: str) -> pygame.Surface:
+    logger = logging.getLogger(__name__)
+    logger.debug(f"Creating solid color image with {color}")
+
+    if len(color) != 7 or color[0] != "#":
+        raise ValueError(f"Invalid color format: {color}")
+    try:
+        surface = pygame.Surface((1, 1))
+        surface.fill(pygame.Color(color))
+    except ValueError as e:
+        raise ValueError(f"Invalid color: {color}") from e
+    return surface
+
+
 class ImageAssetCache:
     def __init__(self) -> None:
         self.logger = logging.getLogger(self.__class__.__name__)
@@ -25,6 +39,10 @@ class ImageAssetCache:
         self._path_cache = self._load_path_cache()
 
     def get(self, name: str) -> pygame.Surface:
+        if not name:
+            raise ValueError("Image name cannot be empty")
+        if name[0] == "#":
+            return make_solid_color_image(name)
         if name not in self._cache:
             path = self._path_cache.get(name)
             if path is None:
