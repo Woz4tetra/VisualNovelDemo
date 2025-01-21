@@ -22,7 +22,7 @@ def load_command_cache(story_path: str) -> CommandSequenceCache:
     for path, dirnames, filenames in story_dir.walk():
         for filename in filenames:
             filepath = path / filename
-            if not filename.endswith(".json"):
+            if not filename.endswith(".json5"):
                 continue
             command_sequence = load_command_sequence(Commands, filepath)
             logger.debug(f"Loaded {len(command_sequence)} commands from {filepath}")

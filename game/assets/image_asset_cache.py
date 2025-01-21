@@ -12,10 +12,10 @@ def load_image(path: str) -> pygame.Surface:
     logger.debug(f"Loading image from {path}")
 
     try:
-        surface = pygame.image.load(path)
+        surface = pygame.image.load(path).convert()
     except pygame.error as e:
         raise SystemExit(f'Could not load image "{path}" {pygame.get_error()}') from e
-    return surface.convert()
+    return surface
 
 
 class ImageAssetCache:

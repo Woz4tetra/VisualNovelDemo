@@ -1,0 +1,14 @@
+[
+    {
+        "type": "set_backdrop",
+        "backdrop": "images/island/06",
+        "load_animation": {
+            "type": "fade_in",
+            "duration": 2.0
+        }
+    },
+    {
+        "type": "delay",
+        "duration": 2.0
+    }
+]

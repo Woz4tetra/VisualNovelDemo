@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Literal
 
 from game.command.commands import Command
@@ -8,3 +8,4 @@ from game.command.commands import Command
 class SetBackdropCommand(Command):
     type: Literal["set_backdrop"] = "set_backdrop"
     backdrop: str = ""
+    load_animation: dict[str, str | float | int] = field(default_factory=dict)

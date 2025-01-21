@@ -1,7 +1,7 @@
 import logging
 
 from game.assets.image_asset_cache import ImageAssetCache
-from game.canvas import Canvas
+from game.canvas.canvas import Canvas
 from game.command.load_command_cache import load_command_cache
 from game.command_line_args import CommandLineArgs
 from game.story_sequence.story_sequence_runner import StorySequenceRunner

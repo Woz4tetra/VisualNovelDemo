@@ -1,0 +1,134 @@
+[
+    {
+        type: "set_backdrop",
+        backdrop: "images/island/01",
+        load_animation: {
+            type: "fade_in",
+            duration: 2.0,
+        },
+    },
+    {
+        type: "transition_to_sequence",
+        sequence: "scene1",
+    },
+    {
+        type: "set_backdrop",
+        backdrop: "images/island/02",
+        load_animation: {
+            type: "fade_in",
+            duration: 2.0,
+        },
+    },
+    {
+        type: "set_backdrop",
+        backdrop: "images/island/03",
+        load_animation: {
+            type: "fade_in",
+            duration: 2.0,
+        },
+    },
+    {
+        type: "set_backdrop",
+        backdrop: "images/island/04",
+        load_animation: {
+            type: "fade_in",
+            duration: 2.0,
+        },
+    },
+    {
+        type: "set_backdrop",
+        backdrop: "images/island/05",
+        load_animation: {
+            type: "fade_in",
+            duration: 2.0,
+        },
+    },
+    {
+        type: "set_backdrop",
+        backdrop: "images/island/06",
+        load_animation: {
+            type: "fade_in",
+            duration: 2.0,
+        },
+    },
+    {
+        type: "set_backdrop",
+        backdrop: "images/island/07",
+        load_animation: {
+            type: "fade_in",
+            duration: 2.0,
+        },
+    },
+    {
+        type: "set_backdrop",
+        backdrop: "images/island/08",
+        load_animation: {
+            type: "fade_in",
+            duration: 2.0,
+        },
+    },
+    {
+        type: "set_backdrop",
+        backdrop: "images/island/09",
+        load_animation: {
+            type: "fade_in",
+            duration: 2.0,
+        },
+    },
+    {
+        type: "set_backdrop",
+        backdrop: "images/island/10",
+        load_animation: {
+            type: "fade_in",
+            duration: 2.0,
+        },
+    },
+    {
+        type: "set_backdrop",
+        backdrop: "images/island/11",
+        load_animation: {
+            type: "fade_in",
+            duration: 2.0,
+        },
+    },
+    {
+        type: "set_backdrop",
+        backdrop: "images/island/12",
+        load_animation: {
+            type: "fade_in",
+            duration: 2.0,
+        },
+    },
+    {
+        type: "set_backdrop",
+        backdrop: "images/island/13",
+        load_animation: {
+            type: "fade_in",
+            duration: 2.0,
+        },
+    },
+    {
+        type: "set_backdrop",
+        backdrop: "images/island/14",
+        load_animation: {
+            type: "fade_in",
+            duration: 2.0,
+        },
+    },
+    {
+        type: "set_backdrop",
+        backdrop: "images/island/15",
+        load_animation: {
+            type: "fade_in",
+            duration: 2.0,
+        },
+    },
+    {
+        type: "set_backdrop",
+        backdrop: "images/island/16",
+        load_animation: {
+            type: "fade_in",
+            duration: 2.0,
+        },
+    },
+]

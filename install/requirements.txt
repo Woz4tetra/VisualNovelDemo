@@ -2,3 +2,4 @@ numpy
 toml
 pygame
 dacite
+json5

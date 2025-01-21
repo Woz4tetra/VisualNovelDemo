@@ -1,6 +1,7 @@
-import json
 from pathlib import Path
 from typing import Any, TypeVar
+
+import json5 as json
 
 from game.command.commands import Command
 
