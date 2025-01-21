@@ -3,6 +3,8 @@ from dataclasses import dataclass
 
 import pygame
 
+from game.canvas.user_input.user_event import UserEvent
+
 
 @dataclass
 class AnimationResult:
@@ -16,7 +18,7 @@ class Animator(ABC):
     def initialize(self) -> None: ...
 
     @abstractmethod
-    def tick(self, events: tuple[pygame.event.Event, ...]) -> AnimationResult: ...
+    def tick(self, events: tuple[UserEvent, ...]) -> AnimationResult: ...
 
     @abstractmethod
     def deinitialize(self) -> None: ...

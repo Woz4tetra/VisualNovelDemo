@@ -15,7 +15,7 @@ class TextBehavior:
         self.animation_definition = AnimationDefinition(properties=command)
 
     def initialize(self) -> None:
-        self.logger.debug(f"Playing text animation {self.animation_definition}")
+        self.logger.debug(f"Starting text {self.animation_definition}")
         self.canvas.play_animation(self.animation_definition)
 
     def tick(self) -> event.Event:
@@ -24,4 +24,4 @@ class TextBehavior:
         return event.DONE
 
     def deinitialize(self) -> None:
-        self.logger.debug("Text animation complete")
+        self.logger.debug("Text complete")

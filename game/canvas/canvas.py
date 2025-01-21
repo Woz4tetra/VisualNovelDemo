@@ -6,7 +6,10 @@ import pygame
 from game.canvas.animate.animation_definition import AnimationDefinition
 from game.canvas.animate.animator import Animator
 from game.canvas.animate.make_fade_animator import make_fade_animator
-from game.canvas.animate.text_animator import make_text_animator
+from game.canvas.animate.text.text_animator import make_text_animator
+from game.canvas.user_input.event_mapper_interface import EventMapperInterface
+from game.canvas.user_input.keyboard_event_mapper import KeyboardEventMapper
+from game.canvas.user_input.user_event import UserEvent
 from game.command.commands.set_backdrop_command import SetBackdropCommand
 from game.command.commands.text_command import TextCommand
 
@@ -40,6 +43,7 @@ class Canvas:
         self.active_animators: list[ActiveAnimation] = []
         self.animators: dict[int, Animator] = {}
         self.backdrop: pygame.Surface | None = None
+        self.event_mapper: EventMapperInterface = KeyboardEventMapper()
 
         # decorate the game window
         # icon = pygame.transform.scale(image, (32, 32))
@@ -55,18 +59,11 @@ class Canvas:
 
     def tick(self) -> bool:
         pygame.display.flip()
-        running = True
-        user_events = []
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT or not self.handle_event(event):
-                running = False
-                break
-            user_events.append(event)
-        user_events_frozen = tuple(user_events)
+        user_events, running = self.handle_event()
         if len(self.active_animators) != 0:
             self.draw_background()
         for active_anim in self.active_animators:
-            result = active_anim.animator.tick(user_events_frozen)
+            result = active_anim.animator.tick(user_events)
             if result.surface:
                 self.screen.blit(result.surface, result.destination)
             if result.finished:
@@ -106,7 +103,18 @@ class Canvas:
     def get_active_animations(self) -> list[AnimationDefinition]:
         return [active.definition for active in self.active_animators]
 
-    def handle_event(self, event: pygame.event.Event) -> bool:
+    def handle_event(self) -> tuple[tuple[UserEvent, ...], bool]:
+        user_events = []
+        running = True
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT or not self.handle_system_event(event):
+                running = False
+                break
+            if user_event := self.event_mapper.parse(event):
+                user_events.append(user_event)
+        return tuple(user_events), running
+
+    def handle_system_event(self, event: pygame.event.Event) -> bool:
         if event.type == pygame.QUIT:
             return False
         return True

@@ -4,12 +4,8 @@
         backdrop: "images/island/01",
         load_animation: {
             type: "fade_in",
-            duration: 2.0,
+            duration: 0.5,
         },
-    },
-    {
-        type: "transition_to_sequence",
-        sequence: "scene1",
     },
     {
         type: "composite",
@@ -27,7 +23,7 @@
                             {
                                 text: "BANG!!!",
                                 color: "#FF0000",
-                                styles: ["bold", "wiggly"],
+                                styles: ["bold", "jitter"],
                             },
                         ],
                         load_animation: {
@@ -41,6 +37,11 @@
                 ],
             },
         ],
+    },
+
+    {
+        type: "transition_to_sequence",
+        sequence: "scene1",
     },
     {
         type: "set_backdrop",

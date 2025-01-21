@@ -4,6 +4,7 @@ import time
 import pygame
 
 from game.canvas.animate.animator import AnimationResult, Animator
+from game.canvas.user_input.user_event import UserEvent
 
 
 def now() -> float:
@@ -28,7 +29,7 @@ class FadeAnimator(Animator):
     def initialize(self) -> None:
         self.start_time = now()
 
-    def tick(self, events: tuple[pygame.event.Event, ...]) -> AnimationResult:
+    def tick(self, events: tuple[UserEvent, ...]) -> AnimationResult:
         is_running = (elapsed := now() - self.start_time) < self.duration
         if not is_running:
             self.logger.debug("Fade complete")

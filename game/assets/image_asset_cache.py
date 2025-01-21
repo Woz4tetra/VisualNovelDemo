@@ -2,9 +2,9 @@ import logging
 
 import pygame
 
-from game.assets.paths import ASSETS
+from game.assets.paths import ASSETS, load_path_cache
 
-SUPPORTED_IMAGE_EXTENSIONS = [".png", ".jpg", ".jpeg", ".bmp", ".gif"]
+SUPPORTED_IMAGE_EXTENSIONS = (".png", ".jpg", ".jpeg", ".bmp", ".gif")
 
 
 def load_image(path: str) -> pygame.Surface:
@@ -36,7 +36,10 @@ class ImageAssetCache:
     def __init__(self) -> None:
         self.logger = logging.getLogger(self.__class__.__name__)
         self._cache = {}
-        self._path_cache = self._load_path_cache()
+        self._path_cache = load_path_cache(ASSETS, SUPPORTED_IMAGE_EXTENSIONS)
+        self.logger.debug(
+            f"Loaded {len(self._path_cache)} image path{'' if len(self._path_cache) == 1 else 's'}"
+        )
 
     def get(self, name: str) -> pygame.Surface:
         if not name:
@@ -51,21 +54,3 @@ class ImageAssetCache:
             self._cache[name] = load_image(path)
             self.logger.debug(f"Loaded image {name}")
         return self._cache[name]
-
-    def _load_path_cache(self) -> dict[str, str]:
-        files = {}
-        for path, dirnames, filenames in ASSETS.walk():
-            for filename in filenames:
-                filename_lower = filename.lower()
-                if not any(
-                    filename_lower.endswith(ext) for ext in SUPPORTED_IMAGE_EXTENSIONS
-                ):
-                    continue
-                filepath = path / filename
-                key = str(path.relative_to(ASSETS) / filepath.stem)
-                files[key] = filepath
-                self.logger.debug(f"Found image {key} at {filepath}")
-        self.logger.debug(
-            f"Loaded {len(files)} image path{'' if len(files) == 1 else 's'}"
-        )
-        return files
