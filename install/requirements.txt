@@ -1,5 +1,6 @@
-numpy
 toml
 pygame
 dacite
 json5
+drawsvg==2.0
+svgutils

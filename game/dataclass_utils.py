@@ -8,12 +8,12 @@ from dacite import from_dict as from_dict_dacite
 T = TypeVar("T")
 
 
-def from_dict(cls: Type[T], data: dict) -> T:
+def from_dict(cls: Type[T], data: dict, strict: bool = True) -> T:
     return from_dict_dacite(
         data_class=cls,
         data=data,
         config=Config(
-            strict=True,
+            strict=strict,
             cast=[Enum],
         ),
     )

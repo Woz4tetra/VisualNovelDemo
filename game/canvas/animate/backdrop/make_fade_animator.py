@@ -3,7 +3,7 @@ from typing import Any
 import pygame
 
 from game.canvas.animate.animator import Animator
-from game.canvas.animate.fade_animator import FadeAnimator
+from game.canvas.animate.backdrop.fade_animator import FadeAnimator
 from game.canvas.animate.noop_animator import NoopAnimator
 from game.command.commands.set_backdrop_command import (
     BackdropAppearProperties,

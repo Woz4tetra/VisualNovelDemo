@@ -13,6 +13,8 @@ def jitter(info: TickInfo) -> tuple[int, int]:
 
 def singsong(info: TickInfo) -> tuple[int, int]:
     """Happy text motion."""
-    x = int(info.font_size * math.cos(float(info.current_time + info.char_index) / 2))
-    y = int(info.font_size * math.sin(float(info.current_time + info.char_index) / 2))
+    magnitude = info.font_size * 0.1
+    time_value = (info.current_time + info.char_index * 0.05) * 10.0
+    x = int(magnitude * math.cos(time_value))
+    y = int(magnitude * math.sin(time_value))
     return x, y

@@ -5,7 +5,7 @@ import pygame
 
 from game.canvas.animate.animation_definition import AnimationDefinition
 from game.canvas.animate.animator import Animator
-from game.canvas.animate.make_fade_animator import make_fade_animator
+from game.canvas.animate.backdrop.make_fade_animator import make_fade_animator
 from game.canvas.animate.text.text_animator import make_text_animator
 from game.canvas.user_input.event_mapper_interface import EventMapperInterface
 from game.canvas.user_input.keyboard_event_mapper import KeyboardEventMapper
